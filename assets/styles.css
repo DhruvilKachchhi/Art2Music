@@ -1,0 +1,750 @@
+/* ============================================================
+   Art to Music — Redesigned Styles v2
+   Inspired by ColorPaletteUI: DM Sans/Mono, dark #0d0d1a base,
+   crisp cards, glowing accents, editorial feel
+   v2: Larger text, improved contrast, bigger emojis, HSV tooltips
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap');
+
+/* --- Reset & Global ---------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, .stApp {
+    background: #0d0d1a !important;
+    color: #d8d8ee !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 15px !important;
+}
+
+.block-container {
+    padding: 2rem 2.5rem !important;
+    max-width: 1280px !important;
+}
+
+/* --- Custom Header ----------------------------------- */
+.atm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 2.5rem;
+}
+.atm-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.atm-header-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: #7070a0;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.atm-header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: #f0f0ff;
+    margin: 0;
+}
+.atm-header-sub {
+    font-size: 15px;
+    color: #7878a8;
+    margin-top: 2px;
+    font-style: italic;
+}
+
+/* --- Section Labels --------------------------------- */
+.atm-section-label {
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: #8d8db9;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* --- Upload Zone ------------------------------------ */
+.atm-upload-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5rem 2rem;
+    border: 1px dashed rgba(139,92,246,0.25);
+    border-radius: 18px;
+    background: rgba(139,92,246,0.03);
+    transition: all 0.25s;
+    cursor: pointer;
+    margin-top: 12px;
+}
+.atm-upload-zone:hover {
+    border-color: rgba(139,92,246,0.5);
+    background: rgba(139,92,246,0.06);
+}
+.atm-upload-icon { font-size: 60px; filter: grayscale(0.3); }
+.atm-upload-headline {
+    font-size: 17px;
+    font-weight: 700;
+    color: #c0c0dd;
+    margin: 0;
+}
+.atm-upload-hint {
+    font-size: 13px;
+    color: #6868a0;
+    font-family: 'DM Mono', monospace;
+}
+
+/* --- Panel Cards ------------------------------------ */
+.atm-panel {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+}
+.atm-panel-title {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: #8080b0;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* --- Color Strip & Swatches ------------------------ */
+.atm-color-strip {
+    display: flex;
+    height: 56px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+}
+.atm-swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.atm-swatch {
+    border-radius: 10px;
+    padding: 12px 8px 8px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    min-height: 76px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.atm-swatch:hover { transform: scale(1.05); }
+.atm-swatch-hex {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 600;
+    opacity: 0.9;
+    line-height: 1.3;
+}
+.atm-swatch-pct {
+    font-size: 9px;
+    opacity: 0.65;
+    margin-top: 2px;
+}
+
+/* --- HSV Stat Badges -------------------------------- */
+.atm-hsv-row {
+    display: flex;
+    gap: 10px;
+}
+.atm-hsv-badge {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    user-select: none;
+}
+.atm-hsv-badge:hover {
+    border-color: rgba(139,92,246,0.45);
+    box-shadow: 0 0 20px rgba(139,92,246,0.12);
+}
+.atm-hsv-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9090c0;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.atm-hsv-label .info-icon {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: rgba(139,92,246,0.15);
+    border: 1px solid rgba(139,92,246,0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #a78bfa;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-style: normal;
+}
+.atm-hsv-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #f0f0ff;
+    font-family: 'DM Mono', monospace;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.atm-hsv-bar-track {
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.07);
+    overflow: hidden;
+}
+.atm-hsv-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.8s ease;
+}
+.atm-hsv-range {
+    font-size: 10px;
+    color: #606090;
+    font-family: 'DM Mono', monospace;
+    margin-top: 4px;
+}
+
+/* --- HSV Tooltip ------------------------------------ */
+.atm-hsv-tooltip {
+    position: fixed;
+    z-index: 9999;
+    width: 310px;
+    background: rgba(12, 12, 22, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow:
+        0 28px 70px rgba(0,0,0,0.75),
+        0 0 0 1px rgba(139,92,246,0.18);
+    font-family: 'DM Sans', sans-serif;
+    color: #d8d8ee;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.atm-hsv-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.atm-tooltip-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.atm-tooltip-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.atm-tooltip-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.atm-tooltip-val {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 7px;
+}
+.atm-tooltip-short {
+    font-size: 13px;
+    color: #a8a8d0;
+    font-style: italic;
+    margin-bottom: 8px;
+    line-height: 1.55;
+    border-left: 2px solid rgba(139,92,246,0.4);
+    padding-left: 10px;
+}
+.atm-tooltip-body {
+    font-size: 12px;
+    color: #8080aa;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+.atm-tooltip-body b {
+    color: #b0b0d8;
+    font-weight: 600;
+}
+.atm-tooltip-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 12px 0;
+}
+.atm-tooltip-sub-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #404068;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+/* Gradient bar inside tooltip */
+.atm-tooltip-grad-wrap { margin-bottom: 8px; }
+.atm-tooltip-grad-bar {
+    height: 9px;
+    border-radius: 5px;
+    margin: 0 0 4px;
+    position: relative;
+}
+.atm-tooltip-grad-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid rgba(0,0,0,0.5);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.5);
+}
+.atm-tooltip-grad-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #40406a;
+    font-family: 'DM Mono', monospace;
+}
+/* Color wheel inside hue tooltip */
+.atm-tooltip-wheel-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    margin-top: 4px;
+}
+.atm-tooltip-wheel-swatch {
+    border-radius: 6px;
+    height: 26px;
+}
+.atm-tooltip-wheel-label {
+    font-size: 9px;
+    font-family: 'DM Mono', monospace;
+    color: #50507a;
+    text-align: center;
+    margin-top: 3px;
+    line-height: 1.2;
+}
+/* Examples inside sat/bri tooltips */
+.atm-tooltip-examples {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.atm-tooltip-example {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.atm-tooltip-example-swatch {
+    width: 32px; height: 20px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+.atm-tooltip-example-label {
+    font-size: 12px;
+    color: #7070a0;
+    font-family: 'DM Mono', monospace;
+}
+
+/* --- Scene Type Badge ------------------------------- */
+.atm-scene-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 16px 18px;
+}
+.atm-scene-icon { font-size: 34px; }
+.atm-scene-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #d4d4f8;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+.atm-scene-desc {
+    font-size: 13px;
+    color: #7878a8;
+    line-height: 1.5;
+}
+
+/* --- 7 Elements Cards ------------------------------ */
+.atm-elements-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.atm-elem-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 14px 6px 12px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+}
+.atm-elem-card:hover {
+    border-color: rgba(139,92,246,0.4);
+    transform: translateY(-2px);
+}
+.atm-elem-icon { font-size: 24px; margin-bottom: 7px; }
+.atm-elem-name {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7878a8;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+.atm-elem-score {
+    font-size: 19px;
+    font-weight: 800;
+    color: #d4d4f8;
+    font-family: 'DM Mono', monospace;
+    line-height: 1;
+}
+
+/* --- Progress Bars for Elements -------------------- */
+.atm-bar-row { margin-bottom: 12px; }
+.atm-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.atm-bar-label {
+    font-size: 14px;
+    color: #c8c8e8;
+    font-weight: 600;
+}
+.atm-bar-val {
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+    color: #a8a8d0;
+}
+.atm-bar-track {
+    height: 7px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.07);
+    overflow: hidden;
+}
+.atm-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #7c3aed, #38bdf8);
+    transition: width 0.7s ease;
+}
+
+/* --- Object Detection Badges ----------------------- */
+.atm-obj-badges { display: flex; flex-wrap: wrap; gap: 7px; line-height: 1; }
+.atm-obj-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.11);
+    border-radius: 999px;
+    padding: 5px 13px;
+    font-size: 13px;
+    color: #c8c8ee;
+    font-weight: 500;
+}
+.atm-obj-conf {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: #7878a8;
+}
+.atm-mood-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.atm-mood-tag {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(139,92,246,0.1);
+    border: 1px solid rgba(139,92,246,0.25);
+    border-radius: 6px;
+    padding: 4px 11px;
+    font-size: 12px;
+    color: #b8a8f8;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+/* --- Audio Feature Metrics Grid -------------------- */
+.atm-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.atm-metric {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 13px 14px;
+    transition: border-color 0.2s;
+}
+.atm-metric:hover { border-color: rgba(139,92,246,0.35); }
+.atm-metric-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8888b8;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.atm-metric-value {
+    font-size: 21px;
+    font-weight: 800;
+    font-family: 'DM Mono', monospace;
+    color: #eeeeff;
+    line-height: 1;
+}
+
+/* --- Track Cards ----------------------------------- */
+.atm-track-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.atm-track-card:hover {
+    border-color: rgba(139,92,246,0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 32px rgba(139,92,246,0.1);
+}
+.atm-track-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+.atm-rank-badge {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 900;
+    font-family: 'DM Mono', monospace;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.atm-track-name {
+    font-size: 19px;
+    font-weight: 800;
+    color: #f0f0ff;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+.atm-track-artist {
+    font-size: 14px;
+    color: #7878a8;
+    font-weight: 500;
+}
+.atm-track-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.atm-track-chip {
+    font-size: 13px;
+    color: #9898b8;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-family: 'DM Mono', monospace;
+}
+.atm-sim-bar-track {
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.07);
+    overflow: hidden;
+    margin-bottom: 3px;
+}
+.atm-sim-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.6s ease;
+}
+
+/* --- Divider ---------------------------------------- */
+.atm-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 26px 0;
+}
+
+/* --- Streamlit Component Overrides ----------------- */
+section[data-testid="stSidebar"] {
+    background: #080812 !important;
+    border-right: 1px solid rgba(255,255,255,0.05) !important;
+}
+/* Apply DM Sans to everything in the sidebar EXCEPT the material icons */
+section[data-testid="stSidebar"] *:not(.material-symbols-rounded):not([data-testid="stIconMaterial"]) { 
+    font-family: 'DM Sans', sans-serif !important; 
+}
+section[data-testid="stSidebar"] h2 {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 30px !important;
+    letter-spacing: 0.06em !important;
+    color: #f0f0ff !important;
+}
+section[data-testid="stSidebar"] h3 {
+    font-size: 11px !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: #7878a8 !important;
+    font-weight: 700 !important;
+}
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] span {
+    font-size: 13px !important;
+    color: #9898b8 !important;
+}
+
+section[data-testid="stFileUploadDropzone"] {
+    background: rgba(139,92,246,0.04) !important;
+    border: 1px dashed rgba(139,92,246,0.25) !important;
+    border-radius: 14px !important;
+    transition: all 0.25s !important;
+}
+section[data-testid="stFileUploadDropzone"]:hover {
+    border-color: rgba(139,92,246,0.5) !important;
+    background: rgba(139,92,246,0.07) !important;
+}
+section[data-testid="stFileUploadDropzone"] span,
+section[data-testid="stFileUploadDropzone"] p {
+    font-size: 14px !important;
+    color: #8888b0 !important;
+}
+
+div[data-testid="metric-container"] {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+}
+div[data-testid="metric-container"] label {
+    font-size: 11px !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: #8888b0 !important;
+    font-weight: 700 !important;
+}
+div[data-testid="metric-container"] [data-testid="metric-value"] {
+    font-family: 'DM Mono', monospace !important;
+    font-size: 1.3rem !important;
+    font-weight: 800 !important;
+    color: #eeeeff !important;
+}
+
+div[data-testid="stProgress"] > div > div > div {
+    background: linear-gradient(90deg, #7c3aed, #38bdf8) !important;
+    border-radius: 6px !important;
+}
+div[data-testid="stSpinner"] p { color: #a78bfa !important; font-size: 15px !important; }
+div[data-testid="stAlert"] {
+    border-radius: 10px !important;
+    border-left-width: 3px !important;
+    background: rgba(255,255,255,0.03) !important;
+    font-size: 14px !important;
+}
+details[data-testid="stExpander"] {
+    background: rgba(255,255,255,0.02) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 12px !important;
+}
+
+h1, h2, h3, h4, h5, h6 { color: #d4d4f8 !important; }
+h4 { font-size: 1.1rem !important; font-weight: 700 !important; }
+p { color: #b0b0d0 !important; font-size: 14px !important; }
+
+code {
+    background: rgba(139,92,246,0.1) !important;
+    color: #b8a8ff !important;
+    border-radius: 4px !important;
+    padding: 2px 6px !important;
+    font-family: 'DM Mono', monospace !important;
+    font-size: 13px !important;
+}
+
+div[data-testid="stToggle"] label {
+    color: #a0a0c8 !important;
+    font-size: 14px !important;
+}
+hr { border-color: rgba(255,255,255,0.06) !important; margin: 1.5rem 0 !important; }
+div[data-testid="stCaption"] p {
+    color: #6868a0 !important;
+    font-size: 12px !important;
+    font-family: 'DM Mono', monospace !important;
+    letter-spacing: 0.04em !important;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #08080f; }
+::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.6); }
+
+div[data-testid="stPlotlyChart"] { border-radius: 14px; overflow: hidden; }
+div[data-testid="stImage"] img { border-radius: 12px !important; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(139,92,246,0); }
+    50%       { box-shadow: 0 0 12px 2px rgba(139,92,246,0.35); }
+}
+.atm-panel, .atm-track-card, .atm-elem-card, .atm-metric {
+    animation: fadeInUp 0.35s ease both;
+}
+
+/* Restore Streamlit's material icons that were overridden by DM Sans */
+[data-testid="stIconMaterial"], 
+.material-symbols-rounded {
+    font-family: "Material Symbols Rounded" !important;
+    visibility: visible !important;
+}
